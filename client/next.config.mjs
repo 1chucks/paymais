@@ -1,4 +1,12 @@
+import withSerwistInit from "@serwist/next"
+
 /** @type {import('next').NextConfig} */
+
+const withSerwist = withSerwistInit({
+  swSrc: "app/sw.ts", // where the service worker src is
+  swDest: "public/sw.js", // where the service worker code will end up
+})
+
 const nextConfig = {
   reactStrictMode: true,
 
@@ -9,4 +17,9 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+export default withSerwist({
+  // Next.js config options
+  nextConfig,
+})
+
+// next.config.mjs
