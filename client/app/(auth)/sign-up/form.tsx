@@ -3,18 +3,16 @@
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import { AppInput, AppSelect, Button, Form, TextH } from "@/comps"
-import { cn, trpc } from "@/lib"
+import { cn } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { $Enums } from "@prisma/client"
 import { useForm } from "react-hook-form"
-import { toast } from "sonner"
 
 import { IFormSchema, defaultValues, formSchema } from "./schema"
 import styles from "./styles.module.css"
 
 export default function SignUpForm() {
   const router = useRouter()
-  const [category, setCategory] = useState<$Enums.DEPARTMENT | undefined>()
+
   const [IsMale, setIsMale] = useState<boolean>(true)
   const [IsClinician, setIsClinician] = useState<boolean>(false)
   const form = useForm<IFormSchema>({
@@ -105,7 +103,6 @@ export default function SignUpForm() {
                       setIsClinician(true)
                     } else {
                       setIsClinician(false)
-                      setCategory(undefined)
                     }
                   }}
                   data={[
@@ -116,9 +113,7 @@ export default function SignUpForm() {
                 {IsClinician && (
                   <AppSelect
                     label={"Department"}
-                    onChange={(e) => {
-                      setCategory(e.target.value as $Enums.DEPARTMENT)
-                    }}
+                    onChange={(e) => {}}
                     data={[
                       { title: "Doctor", value: "DOCTOR" },
                       { title: "Nurse", value: "NURSE" },

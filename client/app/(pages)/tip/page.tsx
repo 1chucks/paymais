@@ -3,7 +3,7 @@
 import React from "react"
 import { useRouter } from "next/navigation"
 import { AppInput, AppLoader, AppModal, Button, Form, TextH } from "@/comps"
-import { cn, trpc, useLoader } from "@/lib"
+import { cn, useLoader } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
