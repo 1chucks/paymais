@@ -5,8 +5,8 @@ import { AppProviders, cn, fontSans } from "@/lib"
 
 import { NavbarHeader } from "./comps/navbar"
 
-const APP_NAME = "NJS App"
-const APP_DESCRIPTION = "Next.js + Serwist PWA"
+const APP_NAME = "Paymais"
+const APP_DESCRIPTION = "Paymais"
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -39,10 +39,17 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className="no-scrollbar overscroll-none"
+    >
       <head />
       <body
-        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
+        className={cn(
+          "min-h-screen font-sans antialiased no-scrollbar overscroll-none",
+          fontSans.variable
+        )}
       >
         <AppProviders>
           <div className="relative flex min-h-screen flex-col bg-background">

@@ -6,7 +6,6 @@ import { AppInput, AppLoader, AppModal, Button, Form, TextH } from "@/comps"
 import { cn, useLoader } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { toast } from "sonner"
 
 import { IFormSchema, defaultValues, formSchema } from "./schema"
 import styles from "./styles.module.css"

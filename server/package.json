@@ -12,15 +12,17 @@
     "start": "bun run src/index.ts"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.8.1",
-    "drizzle-orm": "^0.29.3",
-    "hono": "^3.12.12",
+    "@neondatabase/serverless": "^0.9.3",
+    "drizzle-orm": "^0.31.2",
+    "hono": "^4.4.5",
+    "paystack-sdk": "^2.5.12",
+    "axios": "1.7.2",
     "postgres": "^3.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
+    "@biomejs/biome": "1.8.1",
     "bun-types": "latest",
-    "drizzle-kit": "^0.20.14"
+    "drizzle-kit": "^0.22.7"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
