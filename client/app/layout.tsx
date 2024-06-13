@@ -1,33 +1,12 @@
 import "@/lib/styles/globals.css"
 import { Metadata, Viewport } from "next"
-// import "@rainbow-me/rainbowkit/styles.css"
 import { AppProviders, cn, fontSans } from "@/lib"
 
+import { appMetadata } from "./app"
 import { NavbarHeader } from "./comps/navbar"
 
-const APP_NAME = "Paymais"
-const APP_DESCRIPTION = "Paymais"
-
 export const metadata: Metadata = {
-  applicationName: APP_NAME,
-  title: {
-    default: APP_NAME,
-    template: "%s - NJS App",
-  },
-  description: APP_DESCRIPTION,
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: APP_NAME,
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  icons: {
-    shortcut: "/favicon.ico",
-    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
-  },
+  ...appMetadata,
 }
 
 export const viewport: Viewport = {

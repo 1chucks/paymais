@@ -5,9 +5,8 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { AppStores, NavItem, cn } from "@/lib"
 import { ShoppingCart, User } from "lucide-react"
-
-import { siteConfig } from "./site"
 import { GiMoneyStack, GiPayMoney } from "react-icons/gi"
+import { appMetadata } from "@/app"
 
 interface MainNavProps {
   items?: NavItem[]
@@ -44,7 +43,7 @@ export function NavbarHeader({ items }: MainNavProps) {
         <div className="flex gap-6 md:gap-10 ">
           <Link href="/" className="flex items-center space-x-2">
             <span className="inline-block text-primary-foreground font-extrabold">
-              {siteConfig.name}
+              {appMetadata.applicationName}
             </span>
           </Link>
         </div>
