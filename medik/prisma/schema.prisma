@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // Personal info
+  firstname      String
+  lastname       String
+  email          String        @unique
+  img            String?
+  country        String?
+  allergies      String
+  isMale         Boolean
+  age            Int
+  wallet_address String        @unique
+  isClinician    Boolean       @unique
+  //Relationships
+  department     DEPARTMENT?
+  appointments   Appointment[]
+  // essential
+  id             String        @id @default(uuid())
+  created_at     DateTime?     @default(now())
+  updated_at     DateTime?     @updatedAt
+}
+
+enum DEPARTMENT {
+  DOCTOR
+  PHARMACIST
+  NURSE
+  DENTIST
+  THERAPIST
+  PHYSIO
+  PEADIATRICS
+  EMERGENCY
+}
+
+model Appointment {
+  // Personal info
+  status       APPOINTMENT_STATUS
+  title        String
+  clinician_id String?
+  user_id      String?
+  user         User?              @relation(fields: [user_id], references: [id])
+  // essential
+  id           String             @id @default(uuid())
+  created_at   DateTime?          @default(now())
+  updated_at   DateTime?          @updatedAt
+}
+
+enum APPOINTMENT_STATUS {
+  PENDING
+  COMPLETED
+  CANCELED
+}
+
+model Drugs {
+  // essential
+  id         String    @id @default(uuid())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+}
+
+model Cart {
+  // essential
+  id         String    @id @default(uuid())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+}
+
+model Orders {
+  // essential
+  id         String    @id @default(uuid())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+}

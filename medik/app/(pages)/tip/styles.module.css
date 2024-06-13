@@ -1,0 +1,8 @@
+.container {
+  background-image: url("../../../public/med/frond_dr.jpg");
+  background-repeat: no-repeat, repeat;
+  background-color: #ccd1d4;
+  background-size: cover;
+  object-fit: contain;
+
+}

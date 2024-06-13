@@ -1,0 +1,10 @@
+.container {
+  background-image: url("../../public/med/half_black.jpg");
+  /* background-image: url("../../public/med/frond_dr.jpg"); */
+  /* background-image: url("../../public/med/frontd.jpg"); */
+  background-repeat: no-repeat, repeat;
+  background-color: #e99494;
+  background-size: cover;
+  object-fit: contain;
+
+}
