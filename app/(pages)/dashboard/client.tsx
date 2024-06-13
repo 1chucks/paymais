@@ -1,8 +1,5 @@
 import React from "react"
 import { TextB, TextH } from "@/comps"
-import { AppImg } from "@/lib"
-import { SearchIcon } from "lucide-react"
-
 import { BlueCard } from "./blueCard"
 import { dataQuickActions, serviceData } from "./service"
 
@@ -45,16 +42,13 @@ export default function DashboardScreen() {
       `}
         >
           {dataQuickActions.map((val, i) => (
-            <div
-              key={i}
-              className={
-                "w-full flex flex-col items-center"
-              }
-            >
-              <div className={`bg-card 
+            <div key={i} className={"w-full flex flex-col items-center"}>
+              <div
+                className={`bg-card 
               w-full flex flex-col 
               items-center justify-center
-              rounded-2xl p-3 mb-2`}>
+              rounded-2xl p-3 mb-2`}
+              >
                 <img src={val.icon} className={"w-[100px] h-[100px]"} />
               </div>
               <TextB>{val.title}</TextB>

@@ -6,8 +6,6 @@ import { InputText } from "@/(pages)/_comps"
 import { Button, TextB, TextH } from "@/comps"
 import { cn } from "@/lib"
 
-import styles from "./styles.module.css"
-
 export default function SignInPage() {
   const router = useRouter()
 
@@ -19,8 +17,7 @@ export default function SignInPage() {
         `
     w-full h-[calc(100vh-50px)] 
       flex flex-col items-center justify-center
-    `,
-        styles.container
+    `
       )}
     >
       <div

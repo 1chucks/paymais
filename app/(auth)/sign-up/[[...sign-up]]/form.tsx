@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import { IFormSchema, defaultValues, formSchema } from "./schema"
-import styles from "./styles.module.css"
 
 export default function SignUpForm() {
   const router = useRouter()
@@ -26,8 +25,7 @@ export default function SignUpForm() {
         `
     w-full min-h-[calc(100vh-50px)] 
       flex flex-col items-center justify-center
-    `,
-        styles.container
+    `
       )}
     >
       <div
