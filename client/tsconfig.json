@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext", "webworker"],
     "types": ["@serwist/next/typings"],
     "allowJs": true,
@@ -16,7 +17,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./app/*", "./*"],
+      "@/*": ["./app/*", "./*"]
     },
     "plugins": [
       {

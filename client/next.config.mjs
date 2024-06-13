@@ -1,25 +1,21 @@
-import withSerwistInit from "@serwist/next"
+// @ts-check
+import withSerwistInit from "@serwist/next";
 
-/** @type {import('next').NextConfig} */
+// You may want to use a more robust revision to cache
+// files more efficiently.
+// A viable option is `git rev-parse HEAD`.
+const revision = crypto.randomUUID();
 
 const withSerwist = withSerwistInit({
-  swSrc: "app/sw.ts", // where the service worker src is
-  swDest: "public/sw.js", // where the service worker code will end up
-})
+  cacheOnNavigation: true,
+  swSrc: "app/sw.ts",
+  swDest: "public/sw.js",
+  additionalPrecacheEntries: [{ url: "/~offline", revision }],
+});
 
+/** @type {import("next").NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+};
 
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false, net: false, tls: false }
-    config.externals.push("pino-pretty", "lokijs", "encoding")
-    return config
-  },
-}
-
-export default withSerwist({
-  // Next.js config options
-  nextConfig,
-})
-
-// next.config.mjs
+export default withSerwist(nextConfig);

@@ -34,3 +34,10 @@ yarn-error.log*
 
 .contentlayer
 .env
+
+# Serwist
+**/public/serwist**
+**/public/sw**
+**/public/worker**
+**/public/fallback**
+**/public/precache**
