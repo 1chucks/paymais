@@ -12,8 +12,6 @@ import styles from "./styles.module.css"
 
 export default function SignUpForm() {
   const router = useRouter()
-
-  const [IsMale, setIsMale] = useState<boolean>(true)
   const [IsClinician, setIsClinician] = useState<boolean>(false)
   const form = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
@@ -68,34 +66,6 @@ export default function SignUpForm() {
                   name="lastName"
                   label="Last name"
                 />
-                <AppInput control={form.control} name="email" label="Email" />
-                <AppInput control={form.control} name="phone" label="Phone" />
-                <AppInput
-                  control={form.control}
-                  name="age"
-                  label="Age"
-                  type="no"
-                />
-                <AppInput
-                  control={form.control}
-                  name="allergies"
-                  label="Allergies"
-                />
-
-                <AppSelect
-                  label={"Gender"}
-                  onChange={(e) => {
-                    if (e.target.value == "MALE") {
-                      setIsMale(true)
-                    } else {
-                      setIsMale(false)
-                    }
-                  }}
-                  data={[
-                    { title: "Male", value: "MALE" },
-                    { title: "Female", value: "FEMALE" },
-                  ]}
-                />
                 <AppSelect
                   label={"Are you a clinician?"}
                   onChange={(e) => {
@@ -110,22 +80,6 @@ export default function SignUpForm() {
                     { title: "Yes", value: "YES" },
                   ]}
                 />
-                {IsClinician && (
-                  <AppSelect
-                    label={"Department"}
-                    onChange={(e) => {}}
-                    data={[
-                      { title: "Doctor", value: "DOCTOR" },
-                      { title: "Nurse", value: "NURSE" },
-                      { title: "Pharmacist", value: "PHARMACIST" },
-                      { title: "Therapist", value: "THERAPIST" },
-                      { title: "Dentist", value: "DENTIST" },
-                      { title: "Dentist", value: "PHYSIO" },
-                      { title: "Dentist", value: "PEADIATRICS" },
-                      { title: "Dentist", value: "EMERGENCY" },
-                    ]}
-                  />
-                )}
                 <Button variant={"default"} type="submit" className="mt-4">
                   Submit
                 </Button>

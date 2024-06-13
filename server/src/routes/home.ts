@@ -1,8 +1,8 @@
 import { Hono } from "hono";
 
-export const indexRoutes = new Hono();
+const app = new Hono();
 
-indexRoutes.get("/", async (c) => {
+export const indexRoutes = app.get("/", async (c) => {
   // try {
   //   const data = await db.query.posts.findMany({
   //     with: {

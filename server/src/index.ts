@@ -1,7 +1,9 @@
 import { Hono } from "hono";
 import { db } from "./db";
 import { logger } from "hono/logger";
-import { authRoutes, indexRoutes } from "./routes";
+import { registerRoutes } from "@/routes";
+import { zValidator } from "@hono/zod-validator";
+import { z } from "zod";
 
 const PORT = process.env.PORT || 3000;
 
@@ -9,8 +11,8 @@ const app = new Hono();
 
 app.use("*", logger());
 
-app.route("/", indexRoutes);
-app.route("/auth", authRoutes);
+const withRoutes = registerRoutes(app);
+export type ApiRoutes = typeof withRoutes;
 
 Bun.serve({
   port: PORT,
