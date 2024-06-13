@@ -2,12 +2,9 @@
 
 import React, { useState } from "react"
 import { AppLoader, AppModal, Button, TextB, TextH } from "@/comps"
-import { AppContract, ContractFn, transferCusdTokens } from "@/contract"
 import { AppStores, cn, useLoader } from "@/lib"
-import { useMinipay } from "@/sc"
 import { motion } from "framer-motion"
 import { toast } from "sonner"
-
 import { HeaderRow } from "./Headrow"
 import { IChatData } from "./chatData"
 
@@ -17,7 +14,7 @@ export default function InfoSection(props: {
 }) {
   const [selectTime, setSelectTime] = useState("2 - 4am")
   const state = AppStores.useAppointment()
-  const { walletAddress } = useMinipay()
+
   const { loadState, showLoad, hideLoad } = useLoader()
   const date = new Date()
 
@@ -30,33 +27,6 @@ export default function InfoSection(props: {
       status: "PENDING",
     })
     showLoad()
-    ContractFn.createBooking({
-      userAddress: walletAddress!,
-      drAddress: AppContract.secondWallet,
-      time: 23,
-    })
-      .then(() => {
-        transferCusdTokens({
-          amount: 3,
-          userAddress: walletAddress!,
-          to: AppContract.secondWallet,
-        })
-        // state.addToList({
-        //   name: props.data.name,
-        //   time: date.getTime().toString(),
-        //   duration: selectTime,
-        //   date: Date.now().toString(),
-        //   status: "PENDING",
-        // })
-        toast.success("Transfer successful")
-      })
-      .catch((error: any) => {
-        toast.error("Oops, an error occurred")
-      })
-      .finally(() => {
-        hideLoad()
-        toast.success("Transfer successful")
-      })
   }
 
   return (

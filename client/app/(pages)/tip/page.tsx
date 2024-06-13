@@ -3,9 +3,7 @@
 import React from "react"
 import { useRouter } from "next/navigation"
 import { AppInput, AppLoader, AppModal, Button, Form, TextH } from "@/comps"
-import { transferCusdTokens } from "@/contract"
 import { cn, trpc, useLoader } from "@/lib"
-import { SCUtils, useMinipay } from "@/sc"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -15,38 +13,16 @@ import styles from "./styles.module.css"
 
 export default function SignUpForm() {
   const router = useRouter()
-  const { walletAddress } = useMinipay()
+
   const { loadState, showLoad, hideLoad } = useLoader()
 
   const form = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
   })
-  const t = trpc.user.registerUser.useMutation()
 
   async function onSubmit(values: IFormSchema) {
     // router.push("/dashboard")
-    try {
-      const lookupAddress = await SCUtils.getAddress(
-        values.phone,
-        walletAddress
-      )
-
-      if (lookupAddress) {
-        // todo: verify if email if for a physician
-        transferCusdTokens({
-          userAddress: walletAddress!,
-          to: lookupAddress,
-          amount: parseInt(values.amount),
-        })
-        toast.success("Registered on social connect!")
-      } else {
-        toast.error("Physician not registered")
-      }
-    } catch (error) {
-      toast.error("oops an error occured")
-      console.log("SignUp Error", error)
-    }
   }
 
   return (
