@@ -1,25 +1,16 @@
 import { Hono } from "hono";
 import { db } from "./db";
+import { logger } from "hono/logger";
+import { authRoutes, indexRoutes } from "./routes";
 
 const PORT = process.env.PORT || 3000;
 
 const app = new Hono();
 
-app.get("/", async (c) => {
-  try {
-    const data = await db.query.posts.findMany({
-      with: {
-        comments: true,
-        user: true,
-      },
-    });
-    return c.json({
-      data,
-    });
-  } catch (error) {
-    return c.json({ error });
-  }
-});
+app.use("*", logger());
+
+app.route("/", indexRoutes);
+app.route("/auth", authRoutes);
 
 Bun.serve({
   port: PORT,
