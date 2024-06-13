@@ -1,13 +1,21 @@
+import { type ApiRoutesV } from "@/server"
 import { hc } from "hono/client"
 
-import { ApiRoutes } from "../../../server/src"
 import HomeClient from "../home/client"
 
-const client = hc<ApiRoutes>("http://localhost:4555")
+const client = hc<ApiRoutesV>("http://localhost:4555")
 
 export default function IndexPage() {
   function fnCall() {
-    client
+    client.api.$get({ form: {} })
+    client.api.auth()
+    //   auth.$post({
+    //   form: {
+    //     title: "Hello",
+    //     body: "Hono is a cool project",
+    //   },
+    // })
   }
+
   return <HomeClient />
 }

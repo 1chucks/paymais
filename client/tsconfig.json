@@ -17,8 +17,10 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@server/*": ["../server/src"],
       "@/*": ["./app/*", "./*"]
     },
+    // "references": [{ "path": "../utils", "prepend": true }],
     "plugins": [
       {
         "name": "next"

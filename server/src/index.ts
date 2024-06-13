@@ -1,14 +1,14 @@
 import { Hono } from "hono";
-import { db } from "./db";
 import { logger } from "hono/logger";
-import { registerRoutes } from "@/routes";
-import { zValidator } from "@hono/zod-validator";
-import { z } from "zod";
+import { registerRoutes } from "./routes";
+import { cors } from "hono/cors";
+// import { registerRoutes } from "@/routes";
 
 const PORT = process.env.PORT || 3000;
 
 const app = new Hono();
 
+app.use("*", cors({ origin: ["http://localhost:3000"] }));
 app.use("*", logger());
 
 const withRoutes = registerRoutes(app);

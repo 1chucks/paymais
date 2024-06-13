@@ -12,6 +12,7 @@
     "start": "bun run src/index.ts"
   },
   "dependencies": {
+    "@hono/node-server": "^1.11.2",
     "@hono/zod-validator": "^0.2.2",
     "@neondatabase/serverless": "^0.9.3",
     "axios": "1.7.2",
