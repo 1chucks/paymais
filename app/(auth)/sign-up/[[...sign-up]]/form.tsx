@@ -30,19 +30,17 @@ export default function SignUpForm() {
     >
       <div
         className={`
-        w-[90%] flex flex-col gap-y-4 
+        w-[90%] flex flex-col 
         items-center justify-center 
-        text-center rounded-2xl mt-[50px]
-        p-2
+        text-center
       `}
       >
         <div
           className={`
-      flex flex-col gap-y-4 w-full px-4 rounded-2xl border-primary 
-        border-[1px] bg-slate-300/85 py-2
+      flex flex-col gap-y-4 px-2 
+       py-2 w-full
       `}
         >
-          <TextH>Register with us</TextH>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -63,20 +61,6 @@ export default function SignUpForm() {
                   control={form.control}
                   name="lastName"
                   label="Last name"
-                />
-                <AppSelect
-                  label={"Are you a clinician?"}
-                  onChange={(e) => {
-                    if (e.target.value === "YES") {
-                      setIsClinician(true)
-                    } else {
-                      setIsClinician(false)
-                    }
-                  }}
-                  data={[
-                    { title: "No", value: "NO" },
-                    { title: "Yes", value: "YES" },
-                  ]}
                 />
                 <Button variant={"default"} type="submit" className="mt-4">
                   Submit
