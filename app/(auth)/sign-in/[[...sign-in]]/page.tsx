@@ -2,7 +2,6 @@
 
 import React from "react"
 import { useRouter } from "next/navigation"
-import { InputText } from "@/(pages)/_comps"
 import { Button, TextB, TextH } from "@/comps"
 import { cn } from "@/lib"
 
@@ -36,14 +35,6 @@ export default function SignInPage() {
         py-6 px-4 rounded-2xl border-primary border-[1px]
       `}
         >
-          <InputText placeH={"First name"} />
-          <InputText placeH={"Last name"} />
-          <InputText placeH={"Email"} />
-          <InputText placeH={"Age"} />
-          <InputText placeH={"Allergies"} />
-          <InputText placeH={"Is Male"} />
-          <InputText placeH={"Country"} />
-          <InputText placeH={"Department"} />
           <Button onClick={() => router.push("/dashboard")}> Register</Button>
         </div>
       </div>
