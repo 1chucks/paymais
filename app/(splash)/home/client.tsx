@@ -3,7 +3,7 @@
 import React from "react"
 import { useRouter } from "next/navigation"
 import { Button, TextB, TextH } from "@/comps"
-import { cn } from "@/lib"
+import { AppImg, cn } from "@/lib"
 
 export default function HomeClient() {
   const router = useRouter()
@@ -19,6 +19,9 @@ export default function HomeClient() {
     `
       )}
     >
+      <div className="mb-[40vh]">
+        <img src={AppImg.logoBlue} alt="logo" className="size-[150px]" />
+      </div>
       <div
         className={`
         p-4 flex flex-col bg-card
