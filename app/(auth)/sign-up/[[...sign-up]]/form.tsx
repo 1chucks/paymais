@@ -1,64 +1,28 @@
 "use client"
 
-import React from "react"
-import { AppInput, AppSelect, Button, Form, TextH } from "@/comps"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { AuthWrapper } from "@/(auth)/comps"
+import { AppStores } from "@/lib"
 
-export const formSchema = z.object({
-  referralCode: z
-    .string()
-    .max(6, { message: "Maximum of 6 number" })
-    .optional(),
-  phone: z.string(),
-})
-
-export const defaultValues: z.infer<typeof formSchema> = {
-  phone: "",
-  referralCode: "",
-}
-
-export type IFormSchema = z.infer<typeof formSchema>
+import CreateNew from "./1createNew"
+import EnterOtp from "./2EnterOtp"
+import { EnterPassword } from "./3EnterPassword"
+import EnterBvn from "./4EnterBvn"
+import BvnSuccess from "./5BvnSuccess"
 
 export default function SignUpForm() {
-  const form = useForm<IFormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: defaultValues,
-  })
+  const store = AppStores.useSignUp()
 
-  async function onSubmit(values: IFormSchema) {}
-
-  return (
-    <AuthWrapper>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className={`
-            w-full flex flex-col 
-            items-center 
-            justify-center 
-            my-4
-        `}
-        >
-          <div className={"w-[95%] space-y-4 flex flex-col"}>
-            <AppInput
-              control={form.control}
-              name="phone"
-              label="Mobile number"
-            />
-            <AppInput
-              control={form.control}
-              name="referralCode"
-              label="Referral code(optional)"
-            />
-            <Button variant={"default"} type="submit" className="mt-4">
-              Continue
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </AuthWrapper>
-  )
+  switch (store.stage) {
+    case "CreateNew":
+      return <CreateNew />
+    case "EnterOtp":
+      return <EnterOtp />
+    case "EnterPassword":
+      return <EnterPassword />
+    case "EnterBvn":
+      return <EnterBvn />
+    case "BvnSuccess":
+      return <BvnSuccess />
+    default:
+      return <CreateNew />
+  }
 }

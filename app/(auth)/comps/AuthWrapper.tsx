@@ -16,6 +16,7 @@ export function AuthWrapper(props: { children: ReactNode }) {
         `
     w-full min-h-[calc(100vh-50px)] 
       flex flex-col items-center justify-center
+      bg-background
     `
       )}
     >
@@ -26,21 +27,18 @@ export function AuthWrapper(props: { children: ReactNode }) {
           className="size-[100px] rounded-[50px]"
         />
       </div>
-      <div
+      <motion.div
+        initial={{ x: 50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.5 }}
         className={`
         w-[90%] flex flex-col 
         items-center justify-center 
         text-center
       `}
       >
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ ease: "easeInOut", duration: 0.75 }}
-        >
-          {props.children}
-        </motion.div>
-      </div>
+        {props.children}
+      </motion.div>
     </div>
   )
 }
