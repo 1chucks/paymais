@@ -15,8 +15,8 @@
     "db:generate": "drizzle-kit generate:pg --schema ./app/api/db/schema.ts --out=./app/api/db/migrations",
     "db:migrate": "bun run ./app/api/db/migrate.ts",
     "db:seed": "bun run ./app/api/db/seed.ts",
+    "db:studio": "drizzle-kit studio",
     "format": "bunx @biomejs/biome format ./app/api --write"
-
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
@@ -49,6 +49,7 @@
     "postgres": "^3.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-use": "",
     "react-hook-form": "^7.51.5",
     "react-icons": "^5.0.0",
     "react-loader-spinner": "^6.1.6",
@@ -70,16 +71,16 @@
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/parser": "^5.61.0",
+    "autoprefixer": "^10.4.14",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.20.17",
-    "autoprefixer": "^10.4.14",
     "eslint": "^8.44.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "postcss": "^8.4.24",
     "pg": "^8.11.5",
+    "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.4.5"

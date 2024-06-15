@@ -10,6 +10,8 @@ export type ISignUpStages =
 
 export interface ISlice {
   stage?: ISignUpStages
+  password?: string
+  bvn?: string
 }
 
 export interface ISliceUpdate extends Required<ISlice> {
@@ -19,6 +21,8 @@ export interface ISliceUpdate extends Required<ISlice> {
 
 export const defaultValues: Required<ISlice> = {
   stage: "CreateNew" as ISignUpStages,
+  password: "",
+  bvn: ""
 }
 
 export const useSignUp = create(
