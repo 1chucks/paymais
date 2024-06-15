@@ -1,11 +1,11 @@
 "use client"
 
 import React from "react"
+import { AuthWrapper } from "@/(auth)/comps"
 import { AppInput, AppSelect, Button, Form, TextH } from "@/comps"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { AuthWrapper } from "@/(auth)/comps"
 
 export const formSchema = z.object({
   referralCode: z
@@ -22,7 +22,7 @@ export const defaultValues: z.infer<typeof formSchema> = {
 
 export type IFormSchema = z.infer<typeof formSchema>
 
-export default function SignUpForm() {
+export function EnterPassword() {
   const form = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,

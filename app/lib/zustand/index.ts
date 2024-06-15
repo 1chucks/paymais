@@ -1,10 +1,7 @@
-import { useAppointment } from "./appointments";
-import { useProductStore } from "./pharmacy";
-import { useSettingsStore } from "./settings";
-
+import { useSettingsStore } from "./settings"
+import { useSignUp } from "./signUp"
 
 export const AppStores = {
   useSettingsStore,
-  useProductStore,
-  useAppointment,
+  useSignUp,
 }

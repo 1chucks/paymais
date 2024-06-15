@@ -22,7 +22,7 @@ export const defaultValues: z.infer<typeof formSchema> = {
 
 export type IFormSchema = z.infer<typeof formSchema>
 
-export default function SignUpForm() {
+export default function EnterOtp() {
   const form = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
