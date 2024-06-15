@@ -14,13 +14,12 @@ export function AuthWrapper(props: { children: ReactNode }) {
     <div
       className={cn(
         `
-    w-full min-h-[calc(100vh-50px)] 
-      flex flex-col items-center justify-center
-      bg-background
+    w-full flex flex-col items-center justify-center
+      bg-background pt-10
     `
       )}
     >
-      <div className="mb-[50px] ">
+      <div className="my-[50px] ">
         <img
           src={AppImg.logoWhite}
           alt="logo"
