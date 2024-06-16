@@ -1,28 +1,13 @@
 import { eq } from "drizzle-orm"
-import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
 
 import { db } from ".."
-
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  phone: text("phone").notNull(),
-  password: text("password").notNull(),
-  first_name: text("first_name"),
-  last_name: text("last_name"),
-  email: text("email"),
-  country: text("country"),
-  state: text("state"),
-  lga: text("lga"),
-  identity_proof: text("identity_proof"),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull().defaultNow(),
-})
+import { usersSchema } from "./schema"
 
 export class UserRepository {
   async getUser(params: { id: number }) {
     try {
-      db.query.users.findFirst({
-        where: (user, { eq }) => eq(user.id, params.id),
+      db.query.usersSchema.findFirst({
+        where: (user, { eq }) => eq(usersSchema.id, params.id),
         columns: {
           id: true,
           phone: true,
@@ -33,7 +18,7 @@ export class UserRepository {
   }
   async createUser(params: { phone: string; password: string }) {
     try {
-      const res = await db.insert(users).values({
+      const res = await db.insert(usersSchema).values({
         phone: params.phone,
         password: params.password,
       })
@@ -50,14 +35,14 @@ export class UserRepository {
   }) {
     try {
       const res = await db
-        .update(users)
+        .update(usersSchema)
         .set({
           first_name: params.first_name,
           last_name: params.last_name,
           country: params.country,
           lga: params.lga,
         })
-        .where(eq(users.id, params.id))
+        .where(eq(usersSchema.id, params.id))
       // todo: Log
       return res
     } catch (error) {
@@ -67,11 +52,11 @@ export class UserRepository {
   async updatePassword(params: { id: number; newPassword?: string }) {
     try {
       const res = await db
-        .update(users)
+        .update(usersSchema)
         .set({
           password: params.newPassword,
         })
-        .where(eq(users.id, params.id))
+        .where(eq(usersSchema.id, params.id))
       // todo: Log
       return res
     } catch (error) {
