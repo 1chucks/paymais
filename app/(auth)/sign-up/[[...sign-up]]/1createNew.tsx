@@ -36,8 +36,8 @@ export default function CreateNew() {
   }
 
   return (
-    <AuthWrapper title="Welcome" 
-    subtitle={"Fill in your details to sign into your paymais  account"} 
+    <AuthWrapper title="Create New Account" 
+    subtitle={"Please ensure you use the mobile number that is attached to your BVN"} 
     buttonTitle="Continue" onButtonClick={() => {console.log("Button clicked"); 
     onSubmit(form.getValues);
     }}>

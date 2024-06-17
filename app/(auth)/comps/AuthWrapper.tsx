@@ -46,7 +46,12 @@ export function AuthWrapper(props: { children: ReactNode; title?:string; subtitl
      {props.buttonTitle &&   <Button variant={"default"} type="submit" className="mt-4 w-[80%]" onClick={props.onButtonClick}>
               {props.buttonTitle}
             </Button>}
+            
        </div>
+       <div>
+       <TextB className={`mt-4`}>Already have a Paymais account? <span className={`text-[#000066]`}>Sign in</span></TextB>
+       </div>
+
         <div className="absolute bottom-10 w-[80%]">
           <TextB>By clicking on continue, you accept our Terms of Service and Privacy Policy</TextB>
         </div>
