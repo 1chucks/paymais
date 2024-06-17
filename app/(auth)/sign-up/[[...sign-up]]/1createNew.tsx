@@ -2,7 +2,7 @@
 
 import React from "react"
 import { AuthWrapper } from "@/(auth)/comps"
-import { AppInput, Button, Form, TextH } from "@/comps"
+import { AppInput, Button, Form, TextB } from "@/comps"
 import { AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -37,6 +37,7 @@ export default function CreateNew() {
 
   return (
     <AuthWrapper title="Create New Account" 
+    underButtonText ={(<TextB className={`mt-4`}>Already have a Paymais account? <span className={`text-[#000066]`}>Sign in</span></TextB>)}
     subtitle={"Please ensure you use the mobile number that is attached to your BVN"} 
     buttonTitle="Continue" onButtonClick={() => {console.log("Button clicked"); 
     onSubmit(form.getValues);
@@ -63,6 +64,9 @@ export default function CreateNew() {
               label="Referral code(optional)"
             />
           
+          </div>
+          <div>
+            
           </div>
         </form>
       </Form>

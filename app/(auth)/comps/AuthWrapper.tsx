@@ -1,12 +1,12 @@
 "use client"
 
-import React, { ReactNode, useState } from "react"
+import React, { JSXElementConstructor, ReactNode, useState } from "react"
 import { useRouter } from "next/navigation"
 import { AppInput, AppSelect, Button, Form, TextB, TextH , } from "@/comps"
 import { AppImg, cn } from "@/lib"
 import { motion } from "framer-motion"
 
-export function AuthWrapper(props: { children: ReactNode; title?:string; subtitle?:string; buttonTitle?:string; onButtonClick?: VoidFunction }) {
+export function AuthWrapper(props: { children: ReactNode; title?:string; subtitle?:string; underButtonText?:JSX.Element; buttonTitle?:string;  onButtonClick?: VoidFunction }) {
 
   const router = useRouter()
   const [IsClinician, setIsClinician] = useState<boolean>(false)
@@ -49,11 +49,12 @@ export function AuthWrapper(props: { children: ReactNode; title?:string; subtitl
             
        </div>
        <div>
-       <TextB className={`mt-4`}>Already have a Paymais account? <span className={`text-[#000066]`}>Sign in</span></TextB>
+       {props.underButtonText && props.underButtonText}
+       
        </div>
 
-        <div className="absolute bottom-10 w-[80%]">
-          <TextB>By clicking on continue, you accept our Terms of Service and Privacy Policy</TextB>
+        <div className="absolute bottom-10 w-[60%]">
+          <TextB>By clicking on continue, you accept our <span className={`text-[#000066]`}>Terms of Service</span> and <span className={`text-[#000066]`}> Privacy Policy</span></TextB>
         </div>
       </motion.div>
     </div>
