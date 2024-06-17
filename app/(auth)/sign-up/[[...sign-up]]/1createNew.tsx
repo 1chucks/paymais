@@ -13,7 +13,7 @@ export const formSchema = z.object({
     .string()
     .max(6, { message: "Maximum of 6 number" })
     .optional(),
-  phone: z.string(),
+  phone: z.string() .optional(),
 })
 
 export const defaultValues: z.infer<typeof formSchema> = {
@@ -36,7 +36,11 @@ export default function CreateNew() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Welcome" 
+    subtitle={"Fill in your details to sign into your paymais  account"} 
+    buttonTitle="Continue" onButtonClick={() => {console.log("Button clicked"); 
+    onSubmit(form.getValues);
+    }}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -58,9 +62,7 @@ export default function CreateNew() {
               name="referralCode"
               label="Referral code(optional)"
             />
-            <Button variant={"default"} type="submit" className="mt-4">
-              Continue
-            </Button>
+          
           </div>
         </form>
       </Form>
