@@ -1,10 +1,10 @@
-import { ApiType } from "@/api"
+// import { ApiType } from "@/server"
 import { useQuery } from "@tanstack/react-query"
 import { hc } from "hono/client"
 
-const client = hc<ApiType>(process.env.NEXT_PUBLIC_SERVER_URL!)
+// const client = hc<ApiType>(process.env.NEXT_PUBLIC_SERVER_URL!)
 
-export const ApiClient = client.api
+// export const ApiClient = client.api
 
 function sayMyName() {
   // ApiClient.auth.verify_otp.$get()
