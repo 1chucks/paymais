@@ -31,7 +31,9 @@ export default function EnterBvn() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Enter BVN"
+    subtitle={"Please enter your BVN below as this will enable us ..."}
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -44,8 +46,8 @@ export default function EnterBvn() {
         >
           <div className={"w-[95%] space-y-4 flex flex-col"}>
             <AppInput control={form.control} name="bvn" label="Enter BVN" />
-            <Button variant={"default"} type="submit" className="mt-4">
-              Verify
+            <Button variant={"default"} type="submit" className="mt-4 ">
+              Finish
             </Button>
           </div>
         </form>

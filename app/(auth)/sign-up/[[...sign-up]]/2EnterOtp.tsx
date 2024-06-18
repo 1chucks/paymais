@@ -33,7 +33,8 @@ export default function EnterOtp() {
   return (
     <AuthWrapper title="Enter OTP"
       subtitle={"Enter the 4 digit code that was sent to your mobile number"}
-      underButtonText ={(<TextB className={`mt-4`}>Didn’t  recieve the OTP?<span className={`text-[#000066]`}>Re-send</span></TextB>)}
+      underButtonText ={(<TextB className={`mt-4`}>Didn’t  recieve the OTP?
+      <span className={`text-[#000066]`}>Re-send</span></TextB>)}
       >
       
       <Form {...form}>
