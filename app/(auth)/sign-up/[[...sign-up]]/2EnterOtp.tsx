@@ -2,7 +2,7 @@
 
 import React from "react"
 import { AuthWrapper } from "@/(auth)/comps"
-import { AppInput, AppSelect, Button, Form, TextH } from "@/comps"
+import { AppInput, AppSelect, Button, Form, TextB, TextH } from "@/comps"
 import { AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -31,7 +31,11 @@ export default function EnterOtp() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Enter OTP"
+      subtitle={"Enter the 4 digit code that was sent to your mobile number"}
+      underButtonText ={(<TextB className={`mt-4`}>Didn’t  recieve the OTP?<span className={`text-[#000066]`}>Re-send</span></TextB>)}
+      >
+      
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -45,9 +49,11 @@ export default function EnterOtp() {
           <div className={"w-[95%] space-y-4 flex flex-col"}>
             <AppInput control={form.control} name="otp" label="OTP" />
             <Button variant={"default"} type="submit" className="mt-4">
-              Continue
+              Vertify Now
             </Button>
+ 
           </div>
+          
         </form>
       </Form>
     </AuthWrapper>
