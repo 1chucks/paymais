@@ -1,5 +1,8 @@
+import { OtpRepository } from "@/server/db"
+
 export class NotificationService {
-  public async sendOtpToPhone(num: string) {}
+  constructor() {}
+  public async sendOtpToPhone(prams: { phone: string; msg: string }) {}
   static async sendMsgToPhone() {}
   static async sendOtpToEmail() {}
 }

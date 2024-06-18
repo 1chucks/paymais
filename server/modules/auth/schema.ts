@@ -12,7 +12,7 @@ export const sendOtpSchema = zValidator(
   "json",
   z.object({
     phone: z.string(),
-    referralCode: z.string(),
+    referralCode: z.string().optional(),
   })
 )
 export const verifyBvnSchema = zValidator(

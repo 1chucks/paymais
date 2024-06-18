@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm"
 
 import { db } from ".."
-import { usersSchema } from "./schema"
+import { usersSchema } from "../schema"
 
 export class UserRepository {
   async getUser(params: { id: number }) {

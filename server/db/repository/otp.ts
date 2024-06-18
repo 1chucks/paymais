@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm"
 import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
 
 import { db } from ".."
-import { usersSchema } from "./schema"
+import { usersSchema } from "../schema"
 
 export class OtpRepository {
   async createOtp(params: {
