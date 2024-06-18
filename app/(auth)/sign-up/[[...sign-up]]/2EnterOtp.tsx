@@ -2,7 +2,7 @@
 
 import React from "react"
 import { AuthWrapper } from "@/(auth)/comps"
-import { AppInput, AppSelect, Button, Form, TextB, TextH } from "@/comps"
+import { AppInput, AppOtpInput, AppSelect, Button, Form, TextB, TextH } from "@/comps"
 import { AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -48,7 +48,7 @@ export default function EnterOtp() {
         `}
         >
           <div className={"w-[95%] space-y-4 flex flex-col"}>
-            <AppInput control={form.control} name="otp" label="OTP" />
+            <AppOtpInput/>
             <Button variant={"default"} type="submit" className="mt-4">
               Vertify Now
             </Button>
