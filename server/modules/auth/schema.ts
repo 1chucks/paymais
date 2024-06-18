@@ -2,10 +2,10 @@ import { zValidator } from "@hono/zod-validator"
 import { z } from "zod"
 
 export const verifyOtpSchema = zValidator(
-  "form",
+  "json",
   z.object({
-    title: z.string(),
-    body: z.string(),
+    otp: z.string(),
+    token: z.string(),
   })
 )
 export const sendOtpSchema = zValidator(
@@ -28,5 +28,18 @@ export const createAccountSchema = zValidator(
     bvn: z.number().min(10, { message: "Minimum of 10 numbers" }),
     password: z.string(),
     confirmPassword: z.string(),
+  })
+)
+export const loginSchema = zValidator(
+  "json",
+  z.object({
+    phone: z.string(),
+    password: z.string(),
+  })
+)
+export const logoutSchema = zValidator(
+  "json",
+  z.object({
+    token: z.string(),
   })
 )
