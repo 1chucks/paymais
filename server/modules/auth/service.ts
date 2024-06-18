@@ -38,6 +38,7 @@ export class AuthService {
   }
 
   async createAccount(props: { phone: string; bvn: number; password: string }) {
+
     const res = await this.userService.createUser(props)
   }
 

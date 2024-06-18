@@ -1,11 +1,11 @@
 import { db } from "."
-import { jobDetailsSchema, otpSchema, usersSchema } from "./schema"
+import { authTokenSchema, jobDetailsSchema, usersSchema } from "./schema"
 
 const main = async () => {
   try {
     console.log("Seeding database")
     // Delete all data
-    await db.delete(otpSchema)
+    await db.delete(authTokenSchema)
     await db.delete(jobDetailsSchema)
     await db.delete(usersSchema)
 
