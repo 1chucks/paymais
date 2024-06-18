@@ -1,9 +1,8 @@
+import { registerRoutes } from "@/server"
 import { Hono } from "hono"
 import { cors } from "hono/cors"
 import { logger } from "hono/logger"
 import { handle } from "hono/vercel"
-
-import { registerRoutes } from "@/server"
 
 export const runtime = "edge"
 

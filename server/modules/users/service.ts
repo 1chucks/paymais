@@ -1,1 +1,4 @@
-export class UserService {}
+export class UserService {
+  async createUser() {}
+  async checkIfPhoneNumberExist() {}
+}
