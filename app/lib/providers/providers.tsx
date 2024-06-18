@@ -12,7 +12,8 @@ const queryClient = new QueryClient()
 
 export function AppProviders(props: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light">
+      {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           {props.children}
