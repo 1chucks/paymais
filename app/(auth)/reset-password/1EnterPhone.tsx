@@ -36,7 +36,9 @@ export default function EnterPhone() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Reset Your Password"
+    subtitle="Please enter your mobile number. We will send an OTP to recover your accoun"
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -53,11 +55,7 @@ export default function EnterPhone() {
               name="phone"
               label="Mobile number"
             />
-            <AppInput
-              control={form.control}
-              name="referralCode"
-              label="Referral code(optional)"
-            />
+           
             <Button variant={"default"} type="submit" className="mt-4">
               Continue
             </Button>
