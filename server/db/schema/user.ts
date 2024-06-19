@@ -5,6 +5,7 @@ import { baseProperties } from "./utils"
 export const usersSchema = pgTable("users", {
   phone: text("phone").notNull(),
   password: text("password").notNull(),
+  bvn: integer("bvn").notNull(),
   first_name: text("first_name"),
   last_name: text("last_name"),
   email: text("email"),

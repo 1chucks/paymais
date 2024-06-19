@@ -4,7 +4,7 @@ import { db } from ".."
 import { usersSchema } from "../schema"
 
 export class UserRepository {
-  async getUser(params: { id: number }) {
+  async getUserById(params: { id: number }) {
     try {
       db.query.usersSchema.findFirst({
         where: (user, { eq }) => eq(usersSchema.id, params.id),
@@ -16,13 +16,32 @@ export class UserRepository {
       })
     } catch (error) {}
   }
-  async createUser(params: { phone: string; password: string }) {
+
+  async getUserByPhone(params: { phone: string }) {
+    try {
+      const res = await db.query.usersSchema.findFirst({
+        where: (user, { eq }) => eq(usersSchema.phone, params.phone),
+        columns: {
+          id: true,
+          phone: true,
+          first_name: true,
+        },
+      })
+      return res
+    } catch (error) {
+      throw new Error("Oops an error ocurred")
+    }
+  }
+  async createUser(params: { phone: string; password: string; bvn: number }) {
     try {
       const res = await db.insert(usersSchema).values({
         phone: params.phone,
         password: params.password,
+        bvn: params.bvn,
       })
-    } catch (error) {}
+    } catch (error) {
+      throw new Error("Could not add to database")
+    }
     // todo: Log
   }
   async updateUser(params: {
@@ -47,6 +66,7 @@ export class UserRepository {
       return res
     } catch (error) {
       // todo: Log
+      throw new Error("Could not update user profile")
     }
   }
   async updatePassword(params: { id: number; newPassword?: string }) {
@@ -61,6 +81,7 @@ export class UserRepository {
       return res
     } catch (error) {
       // todo: Log
+      throw new Error("Could not reset password")
     }
   }
 }

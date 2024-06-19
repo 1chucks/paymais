@@ -1,4 +1,4 @@
-import { AuthRepository } from "@/server/db"
+import { AuthRepository, UserRepository } from "@/server/db"
 import { Hono } from "hono"
 
 import { NotificationService } from "../notification"
@@ -15,7 +15,7 @@ import { AuthService } from "./service"
 
 const authService = new AuthService(
   new NotificationService(),
-  new UserService(),
+  new UserService(new UserRepository()),
   new AuthRepository()
 )
 
@@ -65,7 +65,7 @@ export const authRoutes = new Hono()
       })
     }
   })
-  .post("/logout", logoutSchema, async (c) => {
+  .post("/logout", logoutSchema, async (c, next) => {
     const payload = c.req.valid("json")
     try {
       const res = authService.logout(payload)
