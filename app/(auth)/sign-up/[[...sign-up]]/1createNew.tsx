@@ -3,10 +3,12 @@
 import React from "react"
 import { AuthWrapper } from "@/(auth)/comps"
 import { AppInput, Button, Form, TextB } from "@/comps"
-import { AppStores } from "@/lib"
+import { AppPages, AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+
 import { z } from "zod"
+import { useRouter } from "next/navigation"
 
 export const formSchema = z.object({
   referralCode: z
@@ -25,6 +27,7 @@ export type IFormSchema = z.infer<typeof formSchema>
 
 export default function CreateNew() {
   const store = AppStores.useSignUp()
+  const router = useRouter()
 
   const form = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
@@ -41,7 +44,7 @@ export default function CreateNew() {
       underButtonText={
         <TextB className={`mt-4`}>
           Already have a Paymais account?{" "}
-          <span className={`text-[#000066]`}>Sign in</span>
+          <span onClick={() => router.push(AppPages.signIn)} className={`text-[#000066]`}>Sign in</span>
         </TextB>
       }
       subtitle={

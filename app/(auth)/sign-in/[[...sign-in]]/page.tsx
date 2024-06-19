@@ -3,7 +3,7 @@
 import React from "react"
 import { useRouter } from "next/navigation"
 import { Button, TextB, TextH } from "@/comps"
-import { cn } from "@/lib"
+import { AppPages, cn } from "@/lib"
 
 export default function SignInPage() {
   const router = useRouter()
@@ -35,7 +35,7 @@ export default function SignInPage() {
         py-6 px-4 rounded-2xl border-primary border-[1px]
       `}
         >
-          <Button onClick={() => router.push("/dashboard")}> Register</Button>
+          <Button onClick={() => router.push(AppPages.dashboard)}> Register</Button>
         </div>
       </div>
     </div>
