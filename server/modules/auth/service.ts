@@ -1,4 +1,5 @@
 import { AuthRepository } from "@/server/db"
+import * as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
 
 import { NotificationService } from "../notification"
@@ -38,12 +39,30 @@ export class AuthService {
   }
 
   async createAccount(props: { phone: string; bvn: number; password: string }) {
+    const hash = await this.hashPassword(props.password)
 
-    const res = await this.userService.createUser(props)
+    const res = await this.userService.createUser({
+      ...props,
+      password: hash,
+    })
+
+    return {
+      msg: "Account created successfully",
+    }
   }
 
   async login(props: { phone: string; password: string }) {
     const user = await this.userService.findByPhone(props.phone)
+
+    if (user.password !== props.password) {
+      throw new Error("Invalid number and password")
+    }
+    // todo: generate token
+    
+    // todo: Set cookies
+    return {
+      accessToken: "",
+    }
   }
 
   async resetPasswordSendOtp(props: { phone: string }) {
@@ -60,26 +79,32 @@ export class AuthService {
       otp: value,
     }
   }
+
   async resetPasswordVerifyOtp(props: { otp: string; token: string }) {
     const res = await this.otpVerify(props)
     // todo: get user info
     // add user id to the token data
-    if (res) {
-      return {
-        msg: "success",
-      }
-    } else {
+    if (!res) {
       throw new Error("Invalid OTP")
+    }
+
+    return {
+      msg: "success",
     }
   }
 
   async resetPassword(props: { token: string; newPassword: string }) {
-    const o = await this.tokenDecode(props)
+    const payload = await this.tokenDecode(props)
+    const hashedPassword = await this.hashPassword(props.newPassword)
 
     const res = await this.userService.updatePassword({
-      userId: o.userId,
-      newPassword: props.newPassword,
+      userId: payload.userId,
+      newPassword: hashedPassword,
     })
+
+    return {
+      msg: "Successful",
+    }
   }
 
   async logout(props: { token: string }) {}
@@ -98,6 +123,7 @@ export class AuthService {
       userId: userData!.id,
     }
   }
+
   private async otpVerify(props: { otp: string; token: string }) {
     let isValid: boolean = false
     const res = jwt.verify(props.token, process.env.JWT_SECRET!, (err, otp) => {
@@ -126,5 +152,11 @@ export class AuthService {
       value: randomNumbersString,
       token: res,
     }
+  }
+
+  private async hashPassword(password: string) {
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(password, salt)
+    return hash
   }
 }
