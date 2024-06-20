@@ -9,9 +9,9 @@ const main = async () => {
     await db.delete(jobDetailsSchema)
     await db.delete(usersSchema)
 
-    await db
-      .insert(usersSchema)
-      .values([{ phone: "234810893883", password: "" }])
+    // await db
+    //   .insert(usersSchema)
+    //   .values([{ phone: "234810893883", password: "", bvn: "" }])
   } catch (error) {
     console.error(error)
     throw new Error("Failed to seed database")
