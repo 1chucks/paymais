@@ -25,6 +25,7 @@ export class UserRepository {
           id: true,
           phone: true,
           first_name: true,
+          password: true,
         },
       })
       return res

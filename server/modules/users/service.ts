@@ -16,6 +16,17 @@ export class UserService {
     return res
   }
 
+  async findByPhone(
+    phone: string
+  ): Promise<{ name: string; password: string; id: number }> {
+    const user = await this.repo.getUserByPhone({ phone: phone })
+    return {
+      name: user?.first_name!,
+      password: user?.password!,
+      id: user?.id!,
+    }
+  }
+
   async updatePassword(props: { userId: number; newPassword: string }) {
     await this.repo.updatePassword({
       id: props.userId,
