@@ -1,5 +1,11 @@
-import React from "react"
+"use client"
 
-export default function DashboardPage() {
-  return <div>DashboardPage</div>
+import { TextH } from "@/comps"
+
+export default function Dashboard() {
+  return (
+    <div>
+      <TextH>dashboard page</TextH>
+    </div>
+  )
 }

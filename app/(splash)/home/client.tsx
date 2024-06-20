@@ -3,7 +3,7 @@
 import React from "react"
 import { useRouter } from "next/navigation"
 import { Button, TextB, TextH } from "@/comps"
-import { AppImg, cn } from "@/lib"
+import { AppImg, AppPages, cn } from "@/lib"
 
 export default function HomeClient() {
   const router = useRouter()
@@ -43,7 +43,7 @@ export default function HomeClient() {
         <div className={"flex items-center justify-center"}>
           <Button
             onClick={() => {
-              router.push("/sign-up")
+              router.push(AppPages.signIn)
             }}
           >
             {`Let's Get Started`}

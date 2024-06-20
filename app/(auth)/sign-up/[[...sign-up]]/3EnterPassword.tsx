@@ -2,7 +2,7 @@
 
 import React from "react"
 import { AuthWrapper } from "@/(auth)/comps"
-import { AppInput, AppSelect, Button, Form, TextH } from "@/comps"
+import { AppInput, AppSelect, Button, Form, TextB, TextH } from "@/comps"
 import { AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -33,7 +33,11 @@ export function EnterPassword() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Create Password"
+    subtitle={"Please ensure you use the mobile number that is attached to your BVN"}
+    underButtonText ={(<TextB className={`mt-4`}>Already have a Paymais account?
+      <span className={`text-[#000066]`}>Sign in</span></TextB>)}
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -51,10 +55,21 @@ export function EnterPassword() {
               name="confirmPassword"
               label="Retype password"
             />
+
+          <div className={`grid grid-cols-2 mt-4`}>
+          <TextB className={`mb-2`}>One lower case character</TextB>
+          <TextB className={`mb-2`}>One special character</TextB>
+          <TextB className={`mb-2`}>One upper case character</TextB>
+          <TextB className={`mb-2`}>8 minimum character</TextB>
+          <TextB className={`mb-2`}>One number</TextB>
+          
+          </div>
+
             <Button variant={"default"} type="submit" className="mt-4">
               Continue
             </Button>
           </div>
+          
         </form>
       </Form>
     </AuthWrapper>

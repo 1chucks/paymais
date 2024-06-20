@@ -31,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <AppProviders>
           <div className="relative flex min-h-screen flex-col bg-background">
-            <div className="flex-1">{children}</div>
+            <div className="flex-1 overscroll-none">{children}</div>
           </div>
         </AppProviders>
       </body>

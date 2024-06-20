@@ -2,18 +2,20 @@
 
 import React from "react"
 import { AuthWrapper } from "@/(auth)/comps"
-import { AppInput, Button, Form, TextH } from "@/comps"
-import { AppStores } from "@/lib"
+import { AppInput, Button, Form, TextB } from "@/comps"
+import { AppPages, AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+
 import { z } from "zod"
+import { useRouter } from "next/navigation"
 
 export const formSchema = z.object({
   referralCode: z
     .string()
     .max(6, { message: "Maximum of 6 number" })
     .optional(),
-  phone: z.string(),
+  phone: z.string().optional(),
 })
 
 export const defaultValues: z.infer<typeof formSchema> = {
@@ -25,6 +27,7 @@ export type IFormSchema = z.infer<typeof formSchema>
 
 export default function CreateNew() {
   const store = AppStores.useSignUp()
+  const router = useRouter()
 
   const form = useForm<IFormSchema>({
     resolver: zodResolver(formSchema),
@@ -36,7 +39,23 @@ export default function CreateNew() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper
+      title="Create New Account"
+      underButtonText={
+        <TextB className={`mt-4`}>
+          Already have a Paymais account?{" "}
+          <span onClick={() => router.push(AppPages.signIn)} className={`text-[#000066]`}>Sign in</span>
+        </TextB>
+      }
+      subtitle={
+        "Please ensure you use the mobile number that is attached to your BVN"
+      }
+      buttonTitle="Continue"
+      onButtonClick={() => {
+        console.log("Button clicked")
+        onSubmit(form.getValues())
+      }}
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -58,10 +77,8 @@ export default function CreateNew() {
               name="referralCode"
               label="Referral code(optional)"
             />
-            <Button variant={"default"} type="submit" className="mt-4">
-              Continue
-            </Button>
           </div>
+          <div></div>
         </form>
       </Form>
     </AuthWrapper>

@@ -33,7 +33,9 @@ export function EnterPassword() {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Create New Password"
+    subtitle="Set a new password for your account so that you can login and recover your account."
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -52,7 +54,7 @@ export function EnterPassword() {
               label="Retype password"
             />
             <Button variant={"default"} type="submit" className="mt-4">
-              Continue
+              Verify Now
             </Button>
           </div>
         </form>

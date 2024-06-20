@@ -1,43 +1,90 @@
 "use client"
 
 import React from "react"
+import { AuthWrapper } from "@/(auth)/comps"
+import { AppInput, Button, Form, TextB } from "@/comps"
+import { AppPages, AppStores } from "@/lib"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+
+import { z } from "zod"
 import { useRouter } from "next/navigation"
-import { Button, TextB, TextH } from "@/comps"
-import { cn } from "@/lib"
+import Link from "next/link"
+
+export const formSchema = z.object({
+  referralCode: z
+    .string()
+    .max(6, { message: "Maximum of 6 number" })
+    .optional(),
+  phone: z.string().optional(),
+})
+
+export const defaultValues: z.infer<typeof formSchema> = {
+  phone: "",
+  referralCode: "",
+}
+
+export type IFormSchema = z.infer<typeof formSchema>
 
 export default function SignInPage() {
+  const store = AppStores.useSignUp()
   const router = useRouter()
 
-  const handleSubmit = () => {}
+  const form = useForm<IFormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: defaultValues,
+  })
+
+  async function onSubmit(values: IFormSchema) {
+    store.update({ stage: "EnterOtp" })
+  }
 
   return (
-    <div
-      className={cn(
-        `
-    w-full h-[calc(100vh-50px)] 
-      flex flex-col items-center justify-center
-    `
-      )}
+    <AuthWrapper
+      title="Welcome!"
+      underButtonText={
+        <TextB className={`mt-4`}>
+          Don’t have a Paymais accoun? 
+          <span onClick={() => router.push(AppPages.signUp)} className={`text-[#000066]`}>Sign up</span>
+        </TextB>
+      }
+      subtitle={
+        "Fill in your details to sign into your paymais  account"
+      }
+      buttonTitle="Continue"
+      onButtonClick={() => {
+        console.log("Button clicked")
+        onSubmit(form.getValues())
+      }}
     >
-      <div
-        className={`
-        w-[70%] flex flex-col gap-y-4 
-        items-center justify-center 
-        text-center rounded-2xl bg-background
-        p-3
-      `}
-      >
-        <TextH>Register with us</TextH>
-        <TextB v="p4">Have free access to over 100 physicians</TextB>
-        <div
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
           className={`
-      flex flex-col gap-y-4 w-full
-        py-6 px-4 rounded-2xl border-primary border-[1px]
-      `}
+            w-full flex flex-col 
+            items-center 
+            justify-center 
+            my-4
+        `}
         >
-          <Button onClick={() => router.push("/dashboard")}> Register</Button>
-        </div>
-      </div>
-    </div>
+          <div className={"w-[95%] space-y-4 flex flex-col"}>
+            <AppInput
+              control={form.control}
+              name="phone"
+              label="Mobile number"
+            />
+            <AppInput
+              control={form.control}
+              name="referralCode"
+              label="Password"
+            />
+          </div>
+          <div className={`text-[#000066] text-end mt-4`}>
+          <Link href={AppPages.resetPassword}><TextB className={`text-end pl-52 `}>
+            Forgot your Password?</TextB></Link>  
+          </div>
+        </form>
+      </Form>
+    </AuthWrapper>
   )
 }
