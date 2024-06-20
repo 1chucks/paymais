@@ -1,30 +1,16 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { AuthWrapper } from "@/(auth)/comps"
 import { AppInput, Button, Form, TextB } from "@/comps"
 import { AppPages, AppStores } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-
 import { z } from "zod"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
 
-export const formSchema = z.object({
-  referralCode: z
-    .string()
-    .max(6, { message: "Maximum of 6 number" })
-    .optional(),
-  phone: z.string().optional(),
-})
-
-export const defaultValues: z.infer<typeof formSchema> = {
-  phone: "",
-  referralCode: "",
-}
-
-export type IFormSchema = z.infer<typeof formSchema>
+import { IFormSchema, defaultValues, formSchema } from "./form"
 
 export default function SignInPage() {
   const store = AppStores.useSignUp()
@@ -44,13 +30,16 @@ export default function SignInPage() {
       title="Welcome!"
       underButtonText={
         <TextB className={`mt-4`}>
-          Don’t have a Paymais accoun? 
-          <span onClick={() => router.push(AppPages.signUp)} className={`text-[#000066]`}>Sign up</span>
+          {`Don’t have a Paymais accoun?`}
+          <span
+            onClick={() => router.push(AppPages.signUp)}
+            className={`text-[#000066]`}
+          >
+            Sign up
+          </span>
         </TextB>
       }
-      subtitle={
-        "Fill in your details to sign into your paymais  account"
-      }
+      subtitle={"Fill in your details to sign into your paymais  account"}
       buttonTitle="Continue"
       onButtonClick={() => {
         console.log("Button clicked")
@@ -80,8 +69,9 @@ export default function SignInPage() {
             />
           </div>
           <div className={`text-[#000066] text-end mt-4`}>
-          <Link href={AppPages.resetPassword}><TextB className={`text-end pl-52 `}>
-            Forgot your Password?</TextB></Link>  
+            <Link href={AppPages.resetPassword}>
+              <TextB className={`text-end pl-52 `}>Forgot your Password?</TextB>
+            </Link>
           </div>
         </form>
       </Form>
