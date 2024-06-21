@@ -1,4 +1,4 @@
 {
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["Celo", "Hackathon", "Minipay", "wagmi", "BetaLyf"]
+  "cSpell.words": ["BetaLyf", "Celo", "Hackathon", "Minipay", "Termii", "wagmi"]
 }
