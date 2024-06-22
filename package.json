@@ -4,20 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 5500",
-    "devs": "bun --watch ./server/index.ts",
+    "server": "bun --watch ./server/index.ts",
     "build": "next build",
     "start": "next start",
+    "start:server": "bun ./server/index.ts",
     "lint": "next lint && bunx @biomejs/biome lint ./app/api",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
     "typecheck": "tsc --noEmit",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-    "db:generate": "drizzle-kit generate:pg --schema ./app/api/db/schema.ts --out=./app/api/db/migrations",
+    "db:generate": "drizzle-kit generate:pg --schema ./server/db/schema/*.ts --out=./server/db/migrations",
     "db:migrate": "bun run ./app/api/db/migrate.ts",
     "db:seed": "bun run ./app/api/db/seed.ts",
     "db:studio": "drizzle-kit studio",
-    "format": "bunx @biomejs/biome format ./app/api --write"
+    "format": "bunx @biomejs/biome format ./server --write"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
@@ -92,6 +93,7 @@
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2",
+    "tsx": "^3.14.0",
     "typescript": "^5.4.5"
   },
   "browser": {
